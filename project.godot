@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Godot Wild Jam 49"
-run/main_scene="res://scenes/world/world.tscn"
+run/main_scene="res://scenes/title/title.tscn"
 config/icon="res://icon.png"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
