@@ -20,7 +20,7 @@ var jump_num := 0
 var dash_left: bool
 
 onready var cam := $Camera2D
-onready var animatedSprite := $AnimatedSprite
+onready var sprite := $AnimatedSprite
 
 
 func _physics_process(delta: float) -> void:
@@ -29,12 +29,8 @@ func _physics_process(delta: float) -> void:
 			var input := Input.get_axis("move_left", "move_right")
 			if input == 0.0:
 				velocity.x = move_toward(velocity.x, 0.0, friction * delta)
-				if is_on_floor():
-					animatedSprite.animation = "Idle"
 			else:
 				velocity.x = move_toward(velocity.x, input * max_speed, acceleration * delta)
-				if is_on_floor():
-					animatedSprite.animation = "Run"
 			
 			if is_on_floor():
 				jump_num = 0
@@ -50,18 +46,20 @@ func _physics_process(delta: float) -> void:
 				state = State.DEAD
 				emit_signal("died")
 				
-			var is_jumping := false
-			var is_falling := false 
-			if !is_on_floor() and velocity.y <= 0:
-				is_jumping = true
-			elif !is_on_floor() and velocity.y >= 0:
-				is_falling = true
+			if is_on_floor():
+				if velocity.x == 0:
+					sprite.play("Idle")
+				else:
+					sprite.play("Run")
+					sprite.flip_h = velocity.x < 0
+			else:
+				if velocity.y < 0:
+					sprite.play("Jump")
+				else:
+					sprite.play("Fall")
+				if not velocity.x == 0:
+					sprite.flip_h = velocity.x < 0
 				
-			if is_jumping:
-				animatedSprite.animation = "Jump"
-			if is_falling:
-				animatedSprite.animation = "Fall"
-			flip_sprite(velocity.x)
 		State.DASH:
 			if dash_left:
 				move_and_slide(Vector2.LEFT * dash_speed, Vector2.UP)
@@ -74,15 +72,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		State.DEFAULT:
 			if event.is_action_pressed("dash"):
 				state = State.DASH
-				dash_left = animatedSprite.flip_h
+				dash_left = sprite.flip_h
 				$Dash.start()
-
-
-func flip_sprite(velocity_x: float) -> void:
-	if velocity_x < 0:
-		animatedSprite.flip_h = true
-	elif velocity_x > 0: 
-		animatedSprite.flip_h = false
 
 
 func _on_Dash_timeout() -> void:

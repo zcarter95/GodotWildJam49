@@ -49,7 +49,7 @@ func change_scene_deferred() -> void:
 	if cur_scene is Level:
 		cur_scene.connect("checkpoint_reached", self, "checkpoint_reached")
 		cur_scene.connect("respawn", self, "respawn")
-		if reset_checkpoint:
+		if reset_checkpoint or checkpoint == -1:
 			checkpoint = -1
 			cur_scene.spawn_at_start()
 		else:
