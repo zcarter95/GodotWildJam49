@@ -7,6 +7,7 @@ func _enter_tree():
 		$Player.global_position = Progression.checkpoint
 
 func _on_Player_died() -> void:
+	get_tree().paused = true
 	$CanvasLayer/Control/GameOver.show()
 
 func _process(delta) -> void:
@@ -15,6 +16,7 @@ func _process(delta) -> void:
 
 func _on_Restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	get_tree().paused = false
 
 func CheckpointMark():
 	$Timer.start()

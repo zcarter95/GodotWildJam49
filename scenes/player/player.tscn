@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/player/Boy.png" type="Texture" id=1]
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=2]
 [ext_resource path="res://scenes/player/Boy_Run.png" type="Texture" id=3]
+[ext_resource path="res://scenes/player/Boy_Jump.png" type="Texture" id=4]
+[ext_resource path="res://scenes/player/Boy_Fall.png" type="Texture" id=5]
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 3 )
@@ -36,6 +38,14 @@ region = Rect2( 192, 0, 32, 54 )
 atlas = ExtResource( 3 )
 region = Rect2( 224, 0, 32, 54 )
 
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 54 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 32, 54 )
+
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 48 )
@@ -46,6 +56,16 @@ animations = [ {
 "loop": true,
 "name": "Run",
 "speed": 10.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "Fall",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
@@ -63,7 +83,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -24 )
 frames = SubResource( 1 )
-animation = "Idle"
+animation = "Fall"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

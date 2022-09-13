@@ -25,10 +25,12 @@ func _physics_process(delta: float) -> void:
 	var input := Input.get_axis("move_left", "move_right")
 	if input == 0.0:
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
-		animatedSprite.animation = "Idle"
+		if is_on_floor():
+			animatedSprite.animation = "Idle"
 	else:
 		velocity.x = move_toward(velocity.x, input * max_speed, acceleration * delta)
-		animatedSprite.animation = "Run"
+		if is_on_floor():
+			animatedSprite.animation = "Run"
 		
 	velocity.y += gravity * delta
 	if is_on_floor() and Input.is_action_pressed("move_up"):
@@ -40,6 +42,18 @@ func _physics_process(delta: float) -> void:
 	elif global_position.y - HALF_SCREEN_HEIGHT > cam.limit_bottom:
 		state = State.DEAD
 		emit_signal("died")
+		
+	var is_jumping := false
+	var is_falling := false 
+	if !is_on_floor() and velocity.y <= 0:
+		is_jumping = true
+	elif !is_on_floor() and velocity.y >= 0:
+		is_falling = true
+		
+	if is_jumping:
+		animatedSprite.animation = "Jump"
+	if is_falling:
+		animatedSprite.animation = "Fall"
 	flip_sprite(velocity.x)
 		
 func flip_sprite(velocity_x: float) -> void:
@@ -47,4 +61,6 @@ func flip_sprite(velocity_x: float) -> void:
 		animatedSprite.flip_h = true
 	elif velocity_x > 0: 
 		animatedSprite.flip_h = false
+		
+
 		
