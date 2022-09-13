@@ -2,10 +2,12 @@ extends Node2D
 
 onready var starter = $Checkpoint1
 
+func _enter_tree():
+	if Progression.checkpoint:
+		$Player.global_position = Progression.checkpoint
+
 func _ready():
-	
-	if position in Progression.checkpoint:
-		$Player.position = Progression.checkpoint.position
+	pass
 
 func _on_Player_died() -> void:
 	$CanvasLayer/Control/GameOver.show()

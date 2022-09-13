@@ -9,4 +9,5 @@ func _on_animation_finished():
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		$Display.play()
-		Progression.checkpoint = self
+		Progression.checkpoint = global_position
+		print_debug(Progression.checkpoint)
