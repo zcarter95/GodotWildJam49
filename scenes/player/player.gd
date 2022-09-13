@@ -16,6 +16,7 @@ var velocity := Vector2()
 var state: int = State.DEFAULT
 
 onready var cam := $Camera2D
+onready var animatedSprite := $AnimatedSprite
 
 
 func _physics_process(delta: float) -> void:
@@ -36,3 +37,10 @@ func _physics_process(delta: float) -> void:
 	elif global_position.y - HALF_SCREEN_HEIGHT > cam.limit_bottom:
 		state = State.DEAD
 		emit_signal("died")
+	flip_sprite(velocity.x)
+		
+func flip_sprite(velocity_x: float) -> void:
+	if velocity_x < 0:
+		animatedSprite.flip_h = true
+	elif velocity_x > 0: 
+		animatedSprite.flip_h = false
