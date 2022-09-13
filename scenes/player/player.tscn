@@ -96,3 +96,9 @@ position = Vector2( 0, -23 )
 current = true
 limit_smoothed = true
 smoothing_enabled = true
+
+[node name="Dash" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Dash" to="." method="_on_Dash_timeout"]
