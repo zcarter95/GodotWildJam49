@@ -1,11 +1,13 @@
 extends Control
 
 
+signal change_scene(to)
+
 const TWEEN_TIME := 0.5
 
 
 func _on_Start_pressed() -> void:
-	get_tree().change_scene("res://scenes/world/world.tscn")
+	emit_signal("change_scene", "res://scenes/levels/test_level.tscn")
 
 
 func _on_Credits_pressed() -> void:

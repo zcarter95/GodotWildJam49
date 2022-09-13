@@ -69,6 +69,7 @@ animations = [ {
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
+time = 15.0
 
 [node name="Display" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -24 )

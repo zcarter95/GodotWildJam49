@@ -73,23 +73,26 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.5, 11 )
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 6.0
+height = 34.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -24 )
 frames = SubResource( 1 )
-animation = "Fall"
+animation = "Idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -11 )
-shape = SubResource( 2 )
+position = Vector2( 0, -23 )
+shape = SubResource( 14 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -23 )
 current = true
+limit_smoothed = true
 smoothing_enabled = true
