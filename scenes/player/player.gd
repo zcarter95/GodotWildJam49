@@ -25,8 +25,11 @@ func _physics_process(delta: float) -> void:
 	var input := Input.get_axis("move_left", "move_right")
 	if input == 0.0:
 		velocity.x = move_toward(velocity.x, 0.0, friction * delta)
+		animatedSprite.animation = "Idle"
 	else:
 		velocity.x = move_toward(velocity.x, input * max_speed, acceleration * delta)
+		animatedSprite.animation = "Run"
+		
 	velocity.y += gravity * delta
 	if is_on_floor() and Input.is_action_pressed("move_up"):
 		velocity.y = -jump_force
@@ -44,3 +47,4 @@ func flip_sprite(velocity_x: float) -> void:
 		animatedSprite.flip_h = true
 	elif velocity_x > 0: 
 		animatedSprite.flip_h = false
+		
