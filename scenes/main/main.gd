@@ -1,30 +1,28 @@
 extends Node
 
 
+const TWEEN_TIME := 0.5
+
 var cur_scene: Node
 var checkpoint := -1
+var to: String
+var transition: bool
+var reset_checkpoint: bool
 
 
 func _ready() -> void:
-	call_deferred("change_scene", "res://scenes/title/title.tscn")
+	change_scene("res://scenes/title/title.tscn", false)
 
 
-func change_scene(to: String, reset_checkpoint := true) -> void:
-	if reset_checkpoint:
-		checkpoint = -1
-	if cur_scene:
-		cur_scene.free()
-	cur_scene = load(to).instance()
-	add_child(cur_scene)
-	if cur_scene.has_signal("change_scene"):
-		cur_scene.connect("change_scene", self, "change_scene", [], CONNECT_DEFERRED)
-	if cur_scene is Level:
-		cur_scene.connect("checkpoint_reached", self, "checkpoint_reached")
-		cur_scene.connect("respawn", self, "respawn")
-		if not checkpoint == -1:
-			cur_scene.spawn_at_checkpoint(checkpoint)
-		else:
-			cur_scene.spawn_at_start()
+func change_scene(t: String, tr := true, rc := true) -> void:
+	to = t
+	transition = tr
+	reset_checkpoint = rc
+	if transition:
+		$Tween.interpolate_property($CanvasLayer/ColorRect.material, "shader_param/position", 1, -1.5, TWEEN_TIME)
+		$Tween.start()
+	else:
+		call_deferred("change_scene_deferred")
 
 
 func checkpoint_reached(id: int) -> void:
@@ -32,4 +30,31 @@ func checkpoint_reached(id: int) -> void:
 
 
 func respawn() -> void:
-	call_deferred("change_scene", cur_scene.filename, false)
+	change_scene(cur_scene.filename, true, false)
+
+
+func _on_Tween_tween_all_completed() -> void:
+	if to:
+		change_scene_deferred()
+
+
+func change_scene_deferred() -> void:
+	if cur_scene:
+		cur_scene.free()
+	cur_scene = load(to).instance()
+	to = ""
+	add_child(cur_scene)
+	if cur_scene.has_signal("change_scene"):
+		cur_scene.connect("change_scene", self, "change_scene")
+	if cur_scene is Level:
+		cur_scene.connect("checkpoint_reached", self, "checkpoint_reached")
+		cur_scene.connect("respawn", self, "respawn")
+		if reset_checkpoint:
+			checkpoint = -1
+			cur_scene.spawn_at_start()
+		else:
+			cur_scene.spawn_at_checkpoint(checkpoint)
+	if transition:
+		$Tween.interpolate_property($CanvasLayer/ColorRect.material, "shader_param/position", -1.5, 1, TWEEN_TIME)
+		$Tween.start()
+	
