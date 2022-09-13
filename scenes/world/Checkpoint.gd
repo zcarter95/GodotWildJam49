@@ -11,3 +11,5 @@ func _on_body_entered(body):
 		$Display.play()
 		Progression.checkpoint = global_position
 		print_debug(Progression.checkpoint)
+		
+		owner.CheckpointMark()

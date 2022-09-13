@@ -65,5 +65,16 @@ scale = Vector2( 2, 2 )
 position = Vector2( 98, 161 )
 scale = Vector2( 2, 2 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 163.0
+margin_top = 24.0
+margin_right = 289.0
+margin_bottom = 79.0
+
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="pressed" from="CanvasLayer/Control/GameOver/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
