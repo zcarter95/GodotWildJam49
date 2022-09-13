@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CheckpointIdle.png-43e8127e9a28a8e70b28576521bf3924.stex"
+path="res://.import/CheckpointActivate.png-e5eb555334ad3807217ac9b8ee4011a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/world/CheckpointIdle.png"
-dest_files=[ "res://.import/CheckpointIdle.png-43e8127e9a28a8e70b28576521bf3924.stex" ]
+source_file="res://scenes/checkpoint/CheckpointActivate.png"
+dest_files=[ "res://.import/CheckpointActivate.png-e5eb555334ad3807217ac9b8ee4011a7.stex" ]
 
 [params]
 
