@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 					sprite.flip_h = velocity.x < 0
 				
 		State.DASH:
+			sprite.play("Dash")
 			if dash_left:
 				move_and_slide(Vector2.LEFT * dash_speed, Vector2.UP)
 			else:
