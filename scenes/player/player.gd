@@ -53,8 +53,10 @@ func _physics_process(delta: float) -> void:
 					sprite.play("Run")
 					sprite.flip_h = velocity.x < 0
 			else:
-				if velocity.y < 0:
+				if velocity.y < 0 and jump_num == 1:
 					sprite.play("Jump")
+				elif velocity.y < 0 and jump_num == 2:
+					sprite.play("DoubleJump")
 				else:
 					sprite.play("Fall")
 				if not velocity.x == 0:
