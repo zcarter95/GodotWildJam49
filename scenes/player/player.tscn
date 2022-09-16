@@ -148,8 +148,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 1, -24 )
 frames = SubResource( 1 )
-animation = "DoubleJump"
-frame = 2
+animation = "Dash"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -165,39 +164,5 @@ smoothing_enabled = true
 [node name="Dash" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[node name="DashParticles" type="CPUParticles2D" parent="."]
-position = Vector2( -18, -4 )
-rotation = -3.14159
-scale = Vector2( 4, 4 )
-emitting = false
-amount = 32
-lifetime = 0.1
-one_shot = true
-explosiveness = 1.0
-spread = 20.42
-gravity = Vector2( 0, 0 )
-initial_velocity = 211.13
-initial_velocity_random = 0.2
-scale_amount = 2.0
-scale_amount_random = 0.13
-color = Color( 0.45098, 0.419608, 0.419608, 0.709804 )
-
-[node name="JumpParticles" type="CPUParticles2D" parent="."]
-position = Vector2( 0, -3 )
-rotation = 1.5708
-scale = Vector2( 4, 4 )
-emitting = false
-amount = 32
-lifetime = 0.1
-one_shot = true
-explosiveness = 1.0
-spread = 20.42
-gravity = Vector2( 0, 0 )
-initial_velocity = 211.13
-initial_velocity_random = 0.2
-scale_amount = 2.0
-scale_amount_random = 0.13
-color = Color( 0.45098, 0.419608, 0.419608, 0.709804 )
 
 [connection signal="timeout" from="Dash" to="." method="_on_Dash_timeout"]

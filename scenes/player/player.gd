@@ -21,8 +21,6 @@ var dash_left: bool
 
 onready var cam := $Camera2D
 onready var sprite := $AnimatedSprite
-onready var dashParticles := $DashParticles
-onready var jumpParticles := $JumpParticles
 
 
 func _physics_process(delta: float) -> void:
@@ -58,7 +56,6 @@ func _physics_process(delta: float) -> void:
 				if velocity.y < 0 and jump_num == 1:
 					sprite.play("Jump")
 				elif velocity.y < 0 and jump_num == 2:
-					jumpParticles.emitting = true
 					sprite.play("DoubleJump")
 				else:
 					sprite.play("Fall")
@@ -67,13 +64,10 @@ func _physics_process(delta: float) -> void:
 				
 		State.DASH:
 			sprite.play("Dash")
-			dashParticles.emitting = true
 			if dash_left:
 				move_and_slide(Vector2.LEFT * dash_speed, Vector2.UP)
-				dashParticles.scale.x = -4
 			else:
 				move_and_slide(Vector2.RIGHT * dash_speed, Vector2.UP)
-				dashParticles.scale.x = 4
 
 
 func _unhandled_input(event: InputEvent) -> void:
