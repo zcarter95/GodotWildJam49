@@ -1,0 +1,46 @@
+extends Node2D
+class_name Level
+
+
+signal checkpoint_reached(id)
+signal respawn()
+
+
+onready var start_position: Vector2 = $Player.position
+
+
+func _ready() -> void:
+	for checkpoint in $Checkpoints.get_children():
+		if checkpoint.has_signal("checkpoint_reached"):
+			checkpoint.connect("checkpoint_reached", self, "on_checkpoint_reached")
+
+
+func _process(_delta: float) -> void:
+	$CanvasLayer/Control/Time.text = "%.2f" % $Timer.time_left
+
+
+func spawn_at_checkpoint(id: int) -> void:
+	var checkpoint := $Checkpoints.get_child(id)
+	$Timer.wait_time = checkpoint.time
+	$Player.position = checkpoint.position
+	$Timer.start()
+	$Player/Camera2D.reset_smoothing()
+
+
+func spawn_at_start() -> void:
+	$Timer.start()
+
+
+func on_checkpoint_reached(checkpoint: Area2D) -> void:
+	$Timer.stop()
+	$Timer.wait_time = checkpoint.time
+	$Timer.start()
+	emit_signal("checkpoint_reached", checkpoint.get_index())
+
+
+func _on_Timer_timeout() -> void:
+	emit_signal("respawn")
+
+
+func _on_Player_died() -> void:
+	emit_signal("respawn")
