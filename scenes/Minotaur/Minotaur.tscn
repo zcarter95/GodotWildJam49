@@ -1,14 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/Minotaur/Minotaur.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Minotaur/MinotaurUV.png" type="Texture" id=2]
 
 [node name="Minotaur" type="Node2D"]
-
-[node name="MinotaurReference" type="Sprite" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.509804 )
-texture = ExtResource( 1 )
 
 [node name="Polygons" type="Node2D" parent="."]
 __meta__ = {
@@ -69,7 +63,7 @@ default_length = 100.0
 
 [node name="Head" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( 4, -1088 )
-rotation = 0.103481
+rotation = -0.0762213
 rest = Transform2D( 0.994092, 0.108541, -0.108541, 0.994092, 4, -1088 )
 
 [node name="Neck" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
@@ -79,30 +73,52 @@ rest = Transform2D( 0.0392382, -0.99923, 0.99923, 0.0392382, 2, -806 )
 
 [node name="ArmL" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( -302, -794 )
-rotation = -0.0523228
+rotation = 0.31217
 rest = Transform2D( 1, 0, 0, 1, -302, -794 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="ForearmL" type="Bone2D" parent="Skeleton2D/Hip/Chest/ArmL"]
 position = Vector2( -93, 360 )
+rotation = 0.0164072
 rest = Transform2D( 1, 0, 0, 1, -93, 360 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="HandL" type="Bone2D" parent="Skeleton2D/Hip/Chest/ArmL/ForearmL"]
 position = Vector2( -84, 302 )
-rotation = 1.71645
+rotation = 1.39304
 rest = Transform2D( -0.145137, 0.989412, -0.989412, -0.145137, -84, 302 )
 default_length = 276.0
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="ArmR" type="Bone2D" parent="Skeleton2D/Hip/Chest"]
 position = Vector2( 332, -775 )
+rotation = -0.317599
 rest = Transform2D( 1, 0, 0, 1, 332, -775 )
+__meta__ = {
+"_edit_bone_": true,
+"_edit_ik_": true
+}
 
 [node name="ForearmR" type="Bone2D" parent="Skeleton2D/Hip/Chest/ArmR"]
 position = Vector2( 76, 322 )
-rotation = -0.00724969
+rotation = -0.0455977
 rest = Transform2D( 1, 0, 0, 1, 76, 322 )
+__meta__ = {
+"_edit_bone_": true
+}
 
 [node name="HandR" type="Bone2D" parent="Skeleton2D/Hip/Chest/ArmR/ForearmR"]
 position = Vector2( 70, 321 )
-rotation = 1.4144
+rotation = 1.76828
 rest = Transform2D( 0.155758, 0.987795, -0.987795, 0.155758, 70, 321 )
 default_length = 276.0
+__meta__ = {
+"_edit_bone_": true
+}
