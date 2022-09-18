@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Checklast.png-63da2206f010aae99badaa618fe61341.stex"
+path="res://.import/Checklast-Idle.png-055fe45d2282ddbe9cfd99718888959d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/checkpoint/Checklast.png"
-dest_files=[ "res://.import/Checklast.png-63da2206f010aae99badaa618fe61341.stex" ]
+source_file="res://scenes/checkpoint/Checklast-Idle.png"
+dest_files=[ "res://.import/Checklast-Idle.png-055fe45d2282ddbe9cfd99718888959d.stex" ]
 
 [params]
 

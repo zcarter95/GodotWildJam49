@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Checklast.png-63da2206f010aae99badaa618fe61341.stex"
+path="res://.import/Platlong.png-b1c6c359bc0023b099fa3bd348444389.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/checkpoint/Checklast.png"
-dest_files=[ "res://.import/Checklast.png-63da2206f010aae99badaa618fe61341.stex" ]
+source_file="res://scenes/checkpoint/Platlong.png"
+dest_files=[ "res://.import/Platlong.png-b1c6c359bc0023b099fa3bd348444389.stex" ]
 
 [params]
 
