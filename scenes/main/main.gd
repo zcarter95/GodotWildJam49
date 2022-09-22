@@ -15,6 +15,15 @@ func _ready() -> void:
 	change_scene("res://scenes/title/title.tscn", false)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("settings"):
+		if Settings.get_node("PopupPanel").visible:
+			Settings.get_node("PopupPanel").hide()
+			Keybinds.get_node("PopupPanel").hide()
+		else:
+			Settings.show_settings(cur_scene.name != "Title")
+
+
 func change_scene(t: String, tr := true, rc := true) -> void:
 	if $Tween.is_active():
 		return
