@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/checkpoint/checkpoint.gd" type="Script" id=1]
 [ext_resource path="res://scenes/checkpoint/CheckpointIdle.png" type="Texture" id=2]
 [ext_resource path="res://scenes/checkpoint/CheckpointActivate.png" type="Texture" id=3]
+[ext_resource path="res://scenes/checkpoint/Checkpoint.wav" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -78,6 +79,9 @@ animation = "Activate"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -24, 0, -16, -7, -15, -14, -3, -18, -3, -21, 0, -23, 2, -21, 3, -18, 11, -17, 15, -14, 18, -7, 24, 0 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Display" to="." method="_on_animation_finished"]

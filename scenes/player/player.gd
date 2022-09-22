@@ -42,7 +42,12 @@ func _physics_process(delta: float) -> void:
 			velocity.y += gravity * delta
 			if jump_num < max_jumps and Input.is_action_just_pressed("move_up"):
 				if is_on_wall():
+					play_sound("WallJump")
 					velocity.x = wall_jump_speed if sprite.flip_h else -wall_jump_speed
+				elif jump_num > 0:
+					play_sound("DoubleJump")
+				else:
+					play_sound("Jump")
 				velocity.y = -jump_force
 				jump_num += 1
 			velocity = move_and_slide(velocity, Vector2.UP)
@@ -51,7 +56,7 @@ func _physics_process(delta: float) -> void:
 				cam.limit_bottom = global_position.y + HALF_SCREEN_HEIGHT
 			elif global_position.y - HALF_SCREEN_HEIGHT > cam.limit_bottom:
 				state = State.DEAD
-				emit_signal("died")
+				die()
 				
 			if is_on_floor():
 				if velocity.x == 0:
@@ -59,6 +64,13 @@ func _physics_process(delta: float) -> void:
 				else:
 					sprite.play("Run")
 					sprite.flip_h = velocity.x < 0
+					var footstep_playing := false
+					for child in get_children():
+						if child is AudioStreamPlayer2D and child.stream and "Footstep" in child.stream.resource_path:
+							footstep_playing = true
+							break
+					if not footstep_playing:
+						play_sound("Footstep%s" % (randi() % 2))
 			else:
 				if velocity.y < 0 and jump_num == 1:
 					sprite.play("Jump")
@@ -84,8 +96,23 @@ func _unhandled_input(event: InputEvent) -> void:
 				state = State.DASH
 				dash_left = sprite.flip_h
 				$Dash.start()
+				play_sound("Dash")
 
 
 func _on_Dash_timeout() -> void:
 	if state == State.DASH:
 		state = State.DEFAULT
+
+
+func play_sound(sound: String) -> void:
+	var a := AudioStreamPlayer2D.new()
+	a.stream = load("res://scenes/player/%s.wav" % sound)
+	add_child(a)
+	a.connect("finished", a, "queue_free")
+	a.play()
+
+
+func die() -> void:
+	play_sound("PlayerDeath")
+	emit_signal("died")
+	

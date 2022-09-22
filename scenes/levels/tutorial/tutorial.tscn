@@ -133,6 +133,7 @@ shape = SubResource( 4 )
 [node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 6 )]
 position = Vector2( -102, -784 )
 time = 99.0
+is_final = true
 
 [node name="Text" type="Control" parent="." index="3"]
 margin_right = 40.0
