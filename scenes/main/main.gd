@@ -11,10 +11,13 @@ var reset_checkpoint: bool
 
 
 func _ready() -> void:
+	Settings.connect("change_scene", self, "change_scene")
 	change_scene("res://scenes/title/title.tscn", false)
 
 
 func change_scene(t: String, tr := true, rc := true) -> void:
+	if $Tween.is_active():
+		return
 	to = t
 	transition = tr
 	reset_checkpoint = rc
@@ -54,6 +57,9 @@ func change_scene_deferred() -> void:
 			cur_scene.spawn_at_start()
 		else:
 			cur_scene.spawn_at_checkpoint(checkpoint)
+	if not $BackgroundMusic.stream == cur_scene.background_music:
+		$BackgroundMusic.stream = cur_scene.background_music
+		$BackgroundMusic.play()
 	if transition:
 		$Tween.interpolate_property($CanvasLayer/ColorRect.material, "shader_param/position", -1.5, 1, TWEEN_TIME)
 		$Tween.start()

@@ -8,6 +8,7 @@ signal change_scene(to)
 
 export var start_with_timer := true
 export var next_scene: String
+export var background_music: AudioStream
 
 onready var start_position: Vector2 = $Player.position
 
@@ -56,3 +57,12 @@ func _on_Player_died() -> void:
 func _on_NextLevel_body_entered(body: Node) -> void:
 	if body.name == "Player":
 		emit_signal("change_scene", next_scene)
+
+
+func _on_Death_body_entered(body: Node) -> void:
+	if body.name == "Player":
+		body.die()
+
+
+func _on_Settings_pressed() -> void:
+	Settings.show_settings()

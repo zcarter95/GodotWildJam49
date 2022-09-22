@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The_Harder_they_Fall_Theme.mp3-dce80f87411015c2aa1fa386c18bd0c1.mp3str"
+
+[deps]
+
+source_file="res://scenes/levels/The_Harder_they_Fall_Theme.mp3"
+dest_files=[ "res://.import/The_Harder_they_Fall_Theme.mp3-dce80f87411015c2aa1fa386c18bd0c1.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -3,6 +3,8 @@ extends Control
 
 signal change_scene(to)
 
+export var background_music: AudioStream
+
 const TWEEN_TIME := 0.5
 
 
@@ -23,3 +25,6 @@ func _on_Back_pressed() -> void:
 	$Tween.interpolate_property($VBox, "rect_position:y", -360, 0, TWEEN_TIME)
 	$Tween.start()
 
+
+func _on_Settings_pressed() -> void:
+	Settings.show_settings(false)

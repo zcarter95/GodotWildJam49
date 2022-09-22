@@ -19,6 +19,7 @@ var velocity := Vector2()
 var state: int = State.DEFAULT
 var jump_num := 0
 var dash_left: bool
+var can_dash := true
 
 onready var cam := $Camera2D
 onready var sprite := $AnimatedSprite
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 			
 			if is_on_floor() or is_on_wall():
 				jump_num = 0
+				can_dash = true
 			velocity.y += gravity * delta
 			if jump_num < max_jumps and Input.is_action_just_pressed("move_up"):
 				if is_on_wall():
@@ -51,26 +53,19 @@ func _physics_process(delta: float) -> void:
 				velocity.y = -jump_force
 				jump_num += 1
 			velocity = move_and_slide(velocity, Vector2.UP)
-			
-			if global_position.y + HALF_SCREEN_HEIGHT < cam.limit_bottom:
-				cam.limit_bottom = global_position.y + HALF_SCREEN_HEIGHT
-			elif global_position.y - HALF_SCREEN_HEIGHT > cam.limit_bottom:
-				state = State.DEAD
-				die()
 				
 			if is_on_floor():
-				if velocity.x == 0:
+				if input == 0:
 					sprite.play("Idle")
 				else:
 					sprite.play("Run")
-					sprite.flip_h = velocity.x < 0
 					var footstep_playing := false
 					for child in get_children():
 						if child is AudioStreamPlayer2D and child.stream and "Footstep" in child.stream.resource_path:
 							footstep_playing = true
 							break
 					if not footstep_playing:
-						play_sound("Footstep%s" % (randi() % 2))
+						play_sound("Footstep%s" % (randi() % 2 + 1))
 			else:
 				if velocity.y < 0 and jump_num == 1:
 					sprite.play("Jump")
@@ -78,8 +73,8 @@ func _physics_process(delta: float) -> void:
 					sprite.play("DoubleJump")
 				else:
 					sprite.play("Fall")
-				if not velocity.x == 0:
-					sprite.flip_h = velocity.x < 0
+			if not input == 0:
+				sprite.flip_h = input < 0
 				
 		State.DASH:
 			sprite.play("Dash")
@@ -92,7 +87,8 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	match state:
 		State.DEFAULT:
-			if event.is_action_pressed("dash"):
+			if event.is_action_pressed("dash") and can_dash:
+				can_dash = false
 				state = State.DASH
 				dash_left = sprite.flip_h
 				$Dash.start()
