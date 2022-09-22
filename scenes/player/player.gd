@@ -12,6 +12,7 @@ export var gravity := 1_200
 export var jump_force := 400
 export var max_jumps := 2
 export var dash_speed := 400
+export var wall_jump_speed := 200
 
 var HALF_SCREEN_HEIGHT: int = ProjectSettings.get_setting("display/window/size/height") / 2
 var velocity := Vector2()
@@ -23,6 +24,10 @@ onready var cam := $Camera2D
 onready var sprite := $AnimatedSprite
 
 
+func _ready() -> void:
+	sprite.playing = true
+
+
 func _physics_process(delta: float) -> void:
 	match state:
 		State.DEFAULT:
@@ -32,10 +37,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				velocity.x = move_toward(velocity.x, input * max_speed, acceleration * delta)
 			
-			if is_on_floor():
+			if is_on_floor() or is_on_wall():
 				jump_num = 0
 			velocity.y += gravity * delta
 			if jump_num < max_jumps and Input.is_action_just_pressed("move_up"):
+				if is_on_wall():
+					velocity.x = wall_jump_speed if sprite.flip_h else -wall_jump_speed
 				velocity.y = -jump_force
 				jump_num += 1
 			velocity = move_and_slide(velocity, Vector2.UP)

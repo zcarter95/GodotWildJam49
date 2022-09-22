@@ -4,12 +4,17 @@ class_name Level
 
 signal checkpoint_reached(id)
 signal respawn()
+signal change_scene(to)
 
+export var start_with_timer := true
+export var next_scene: String
 
 onready var start_position: Vector2 = $Player.position
 
 
 func _ready() -> void:
+	if not start_with_timer:
+		$CanvasLayer/Control/Time.hide()
 	for checkpoint in $Checkpoints.get_children():
 		if checkpoint.has_signal("checkpoint_reached"):
 			checkpoint.connect("checkpoint_reached", self, "on_checkpoint_reached")
@@ -28,10 +33,12 @@ func spawn_at_checkpoint(id: int) -> void:
 
 
 func spawn_at_start() -> void:
-	$Timer.start()
+	if start_with_timer:
+		$Timer.start()
 
 
 func on_checkpoint_reached(checkpoint: Area2D) -> void:
+	$CanvasLayer/Control/Time.show()
 	$Timer.stop()
 	$Timer.wait_time = checkpoint.time
 	$Timer.start()
@@ -44,3 +51,8 @@ func _on_Timer_timeout() -> void:
 
 func _on_Player_died() -> void:
 	emit_signal("respawn")
+
+
+func _on_NextLevel_body_entered(body: Node) -> void:
+	if body.name == "Player":
+		emit_signal("change_scene", next_scene)

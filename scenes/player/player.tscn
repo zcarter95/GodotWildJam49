@@ -8,6 +8,22 @@
 [ext_resource path="res://scenes/player/Boy_Double_Jump.png" type="Texture" id=6]
 [ext_resource path="res://scenes/player/Boy_Dash.png" type="Texture" id=7]
 
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 35, 54 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 7 )
+region = Rect2( 35, 0, 35, 54 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 7 )
+region = Rect2( 70, 0, 35, 54 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 7 )
+region = Rect2( 105, 0, 35, 54 )
+
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 36, 54 )
@@ -88,24 +104,13 @@ region = Rect2( 192, 0, 32, 54 )
 atlas = ExtResource( 3 )
 region = Rect2( 224, 0, 32, 54 )
 
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 35, 54 )
-
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 7 )
-region = Rect2( 35, 0, 35, 54 )
-
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 7 )
-region = Rect2( 70, 0, 35, 54 )
-
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 7 )
-region = Rect2( 105, 0, 35, 54 )
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "Dash",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "DoubleJump",
@@ -130,11 +135,6 @@ animations = [ {
 "loop": true,
 "name": "Run",
 "speed": 10.0
-}, {
-"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
-"loop": true,
-"name": "Dash",
-"speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=14]
@@ -146,10 +146,9 @@ collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 1, -24 )
+position = Vector2( 1, -27 )
 frames = SubResource( 1 )
-animation = "Dash"
-playing = true
+animation = "Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -23 )
