@@ -7,7 +7,7 @@ signal respawn()
 signal change_scene(to)
 
 export var start_with_timer := true
-export var next_scene: String
+export(String, FILE, "*.tscn") var next_scene: String
 export var background_music: AudioStream
 
 onready var start_position: Vector2 = $Player.position

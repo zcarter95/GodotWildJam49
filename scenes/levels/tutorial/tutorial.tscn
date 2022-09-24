@@ -50,6 +50,7 @@ extents = Vector2( 321.5, 39.5 )
 
 [node name="Tutorial" instance=ExtResource( 1 )]
 start_with_timer = false
+next_scene = "res://scenes/levels/level_1.tscn"
 background_music = ExtResource( 7 )
 
 [node name="TileMap" type="TileMap" parent="." index="0"]

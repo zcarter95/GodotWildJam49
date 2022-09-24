@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MinotaurUV.png-b7ee72326d9333c75ad72f2763b912e5.stex"
+path="res://.import/MinotaurArmL.png-27d600c247f0a5ca8248146cefcd5a4c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Minotaur/MinotaurUV.png"
-dest_files=[ "res://.import/MinotaurUV.png-b7ee72326d9333c75ad72f2763b912e5.stex" ]
+source_file="res://scenes/levels/minotaur/MinotaurArmL.png"
+dest_files=[ "res://.import/MinotaurArmL.png-27d600c247f0a5ca8248146cefcd5a4c.stex" ]
 
 [params]
 
