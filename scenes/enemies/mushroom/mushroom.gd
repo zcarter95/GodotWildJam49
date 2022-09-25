@@ -37,7 +37,7 @@ func _on_Timer_timeout() -> void:
 
 
 func _on_Area2D_body_entered(body: Node) -> void:
-	if body.name == "Player" and not state == State.DIE:
+	if body.name == "Player" and not state == State.DIE and not body.state == 2:
 		body.take_damage()
 
 
@@ -58,7 +58,7 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 
 func _on_Die_body_entered(body: Node) -> void:
-	if body.name == "Player" and body.global_position.y < $Die/CollisionShape2D.global_position.y:
+	if body.name == "Player" and (body.global_position.y < $Die/CollisionShape2D.global_position.y or body.state == 2):
 		state = State.DIE
 		$Timer.stop()
 		hide()
