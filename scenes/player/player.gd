@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 
 signal died
+signal damage(health)
 
 enum State {DEFAULT, DEAD, DASH}
 
@@ -20,6 +21,7 @@ var state: int = State.DEFAULT
 var jump_num := 0
 var dash_left: bool
 var can_dash := true
+var health := 3
 
 onready var cam := $Camera2D
 onready var sprite := $AnimatedSprite
@@ -112,3 +114,9 @@ func die() -> void:
 	play_sound("PlayerDeath")
 	emit_signal("died")
 	
+
+func take_damage() -> void:
+	health -= 1
+	emit_signal("damage", health)
+	if health == 0:
+		die()

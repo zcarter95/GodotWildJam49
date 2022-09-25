@@ -37,7 +37,7 @@ func _on_Timer_timeout() -> void:
 
 func _on_Area2D_body_entered(body: Node) -> void:
 	if body.name == "Player" and not state == State.DIE:
-		body.die()
+		body.take_damage()
 
 
 func _physics_process(_delta: float) -> void:
@@ -57,6 +57,6 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 
 func _on_Die_body_entered(body: Node) -> void:
-	if body.name == "Player" and body.position.y < position.y:
+	if body.name == "Player" and body.position.y < $Die/CollisionShape2D.position.y:
 		state = State.DIE
 		queue_free()

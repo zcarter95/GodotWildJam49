@@ -1,11 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=3]
+[ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5000, 10 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = ExtResource( 4 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Level" type="Node2D"]
 pause_mode = 1
@@ -51,8 +62,32 @@ margin_bottom = 20.0
 text = "Settings"
 flat = true
 
+[node name="Comp" type="Label" parent="CanvasLayer/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 4 )
+text = "LEVEL COMPLETED"
+align = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 100, 20 )
+rect_scale = Vector2( -1, 1 )
+rect_pivot_offset = Vector2( 50, 10 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 3.0
+step = 1.0
+value = 3.0
+percent_visible = false
+
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="damage" from="Player" to="." method="_on_Player_damage"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="body_entered" from="NextLevel" to="." method="_on_NextLevel_body_entered"]
 [connection signal="body_entered" from="Death" to="." method="_on_Death_body_entered"]

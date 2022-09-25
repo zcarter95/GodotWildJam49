@@ -44,6 +44,8 @@ func on_checkpoint_reached(checkpoint: Area2D) -> void:
 	$Timer.wait_time = checkpoint.time
 	$Timer.start()
 	emit_signal("checkpoint_reached", checkpoint.get_index())
+	if checkpoint.is_final:
+		$CanvasLayer/Control/Comp.show()
 
 
 func _on_Timer_timeout() -> void:
@@ -66,3 +68,7 @@ func _on_Death_body_entered(body: Node) -> void:
 
 func _on_Settings_pressed() -> void:
 	Settings.show_settings()
+
+
+func _on_Player_damage(health) -> void:
+	$CanvasLayer/ProgressBar.value = health
