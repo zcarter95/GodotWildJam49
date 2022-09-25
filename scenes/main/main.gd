@@ -13,7 +13,6 @@ var reset_checkpoint: bool
 func _ready() -> void:
 	Settings.connect("change_scene", self, "change_scene")
 	change_scene("res://scenes/title/title.tscn", false)
-#	change_scene("res://scenes/levels/level_1.tscn", false)
 
 
 func _input(event: InputEvent) -> void:

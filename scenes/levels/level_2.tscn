@@ -1,0 +1,317 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://scenes/checkpoint/checkpoint.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/levels/minotaur/Minotaur.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/levels/level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/levels/The_Harder_they_Fall_Theme.mp3" type="AudioStream" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100, 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21, 7 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 88.5, 10.5 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 97.0
+height = 66.0
+
+[sub_resource type="RectangleShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 56, 9.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 42.5, 40.5 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 32.5, 6.5 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 15.0333
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 60.6244, 10 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 50, 5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 536.5, 10 )
+
+[sub_resource type="Gradient" id=13]
+colors = PoolColorArray( 0, 0, 0, 0, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture2D" id=14]
+gradient = SubResource( 13 )
+fill_from = Vector2( 0, 0.425 )
+fill_to = Vector2( 0, 0.670833 )
+
+[node name="Level12" instance=ExtResource( 3 )]
+next_scene = "res://scenes/end/end.tscn"
+background_music = ExtResource( 4 )
+
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+margin_left = -991.0
+margin_top = -1565.0
+margin_right = 1986.0
+margin_bottom = 907.0
+color = Color( 0.384314, 0.760784, 0.811765, 1 )
+
+[node name="Minotaur" parent="." index="1" instance=ExtResource( 2 )]
+position = Vector2( 382, -373 )
+
+[node name="GoldTrim" type="StaticBody2D" parent="Geometry" index="0"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/GoldTrim" index="0"]
+polygon = PoolVector2Array( -63, 387, 18, 417, 127, 436, 298, 448, 506, 443, 710, 427, 823, 389, 829, 431, 764, 452, 670, 472, 564, 485, 413, 493, 256, 488, 83, 472, -8, 451, -68, 429 )
+
+[node name="Skirt" type="StaticBody2D" parent="Geometry" index="1"]
+position = Vector2( 263, 296 )
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Skirt" index="0"]
+margin_left = -100.0
+margin_top = -4.0
+margin_right = 100.0
+margin_bottom = 4.0
+color = Color( 0.745098, 0.466667, 0.168627, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Skirt" index="1"]
+shape = SubResource( 1 )
+
+[node name="Skirt2" type="StaticBody2D" parent="Geometry" index="2"]
+position = Vector2( 563, 181 )
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/Skirt2" index="0"]
+margin_left = -100.0
+margin_top = -4.0
+margin_right = 100.0
+margin_bottom = 4.0
+color = Color( 0.745098, 0.466667, 0.168627, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Skirt2" index="1"]
+shape = SubResource( 1 )
+
+[node name="RightHand" type="StaticBody2D" parent="Geometry" index="3"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/RightHand" index="0"]
+polygon = PoolVector2Array( 794, 1, 930, -1, 966, 111, 968, 189, 877, 257, 770, 174, 750, 71 )
+
+[node name="BellyButton" type="StaticBody2D" parent="Geometry" index="4"]
+position = Vector2( 369, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/BellyButton" index="0"]
+position = Vector2( 11, -3 )
+shape = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Geometry" index="5"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D" index="0"]
+polygon = PoolVector2Array( 753, -113, 842, -170, 910, -169, 908, -144, 839, -146, 764, -92 )
+one_way_collision = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Geometry" index="6"]
+position = Vector2( 381, -318 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D2" index="0"]
+position = Vector2( -2.5, 0.5 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Geometry" index="7"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D3" index="0"]
+polygon = PoolVector2Array( 631, -267, 644, -271, 672, -202, 672, -157, 666, -134, 654, -136, 657, -175, 641, -239 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Geometry/StaticBody2D3" index="1"]
+polygon = PoolVector2Array( 591, -257, 602, -261, 618, -204, 618, -170, 611, -150, 602, -150, 605, -183, 602, -225 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Geometry" index="8"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D4" index="0"]
+polygon = PoolVector2Array( 166, -261, 176, -252, 152, -201, 158, -152, 147, -145, 139, -196, 153, -240 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Geometry/StaticBody2D4" index="1"]
+polygon = PoolVector2Array( 121, -269, 113, -267, 87, -189, 88, -127, 104, -137, 99, -171, 115, -234, 127, -264 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Geometry" index="9"]
+position = Vector2( 383, -199 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D5" index="0"]
+rotation = 1.5708
+shape = SubResource( 4 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Geometry" index="10"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D6" index="0"]
+polygon = PoolVector2Array( 675, -411, 737, -417, 795, -446, 830, -486, 845, -467, 810, -429, 749, -394, 683, -391 )
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Geometry" index="11"]
+position = Vector2( 611, -462 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D7" index="0"]
+shape = SubResource( 5 )
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Geometry" index="12"]
+position = Vector2( 167, -463 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D8" index="0"]
+shape = SubResource( 5 )
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="Geometry" index="13"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D9" index="0"]
+polygon = PoolVector2Array( 636, -512, 461, -497, 379, -522, 307, -504, 168, -504, 132, -512, 106, -489, 214, -483, 305, -480, 384, -492, 461, -474, 645, -491 )
+one_way_collision = true
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Geometry/StaticBody2D9" index="1"]
+polygon = PoolVector2Array( 584, -568, 608, -553, 570, -531, 498, -523, 388, -541, 319, -530, 238, -519, 149, -549, 170, -570, 206, -557, 279, -546, 366, -563, 402, -559, 475, -541, 539, -549 )
+one_way_collision = true
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="Geometry" index="14"]
+position = Vector2( 502, -719 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D10" index="0"]
+position = Vector2( -6, -0.5 )
+rotation = -0.273248
+shape = SubResource( 6 )
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="Geometry" index="15"]
+position = Vector2( 258, -721 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D11" index="0"]
+position = Vector2( -6, -0.5 )
+rotation = 0.190888
+shape = SubResource( 6 )
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="Geometry" index="16"]
+position = Vector2( 379, -819 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D12" index="0"]
+position = Vector2( 2.5, 0.5 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="Geometry" index="17"]
+position = Vector2( 381, -1010 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D13" index="0"]
+position = Vector2( -0.5, -3.5 )
+shape = SubResource( 8 )
+one_way_collision = true
+
+[node name="Eye" type="StaticBody2D" parent="Geometry" index="18"]
+position = Vector2( 299, -1055 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Eye" index="0"]
+shape = SubResource( 9 )
+
+[node name="Eye2" type="StaticBody2D" parent="Geometry" index="19"]
+position = Vector2( 464, -1055 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/Eye2" index="0"]
+shape = SubResource( 9 )
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="Geometry" index="20"]
+position = Vector2( 586, -986 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D14" index="0"]
+position = Vector2( 5.29761, -2.14807 )
+rotation = 0.670978
+shape = SubResource( 10 )
+one_way_collision = true
+
+[node name="StaticBody2D15" type="StaticBody2D" parent="Geometry" index="21"]
+position = Vector2( 180, -995 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D15" index="0"]
+position = Vector2( 5.29761, -2.14807 )
+rotation = -0.700327
+shape = SubResource( 10 )
+one_way_collision = true
+
+[node name="StaticBody2D16" type="StaticBody2D" parent="Geometry" index="22"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Geometry/StaticBody2D16" index="0"]
+polygon = PoolVector2Array( -158, -1046, -116, -1065, -33, -1075, 81, -1099, 170, -1153, 238, -1197, 518, -1201, 605, -1163, 748, -1086, 913, -1061, 908, -1044, 826, -1005, 721, -1021, 563, -1082, 537, -1078, 519, -1098, 225, -1086, 186, -1086, 49, -1035, -45, -1017, -124, -1033 )
+one_way_collision = true
+
+[node name="StaticBody2D17" type="StaticBody2D" parent="Geometry" index="23"]
+position = Vector2( 377, -680 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D17" index="0"]
+shape = SubResource( 11 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/StaticBody2D17" index="1"]
+margin_left = -50.0
+margin_top = -5.0
+margin_right = 50.0
+margin_bottom = 5.0
+color = Color( 0.12549, 0.180392, 0.215686, 1 )
+
+[node name="StaticBody2D18" type="StaticBody2D" parent="Geometry" index="24"]
+position = Vector2( 377, -401 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D18" index="0"]
+shape = SubResource( 11 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/StaticBody2D18" index="1"]
+margin_left = -50.0
+margin_top = -5.0
+margin_right = 50.0
+margin_bottom = 5.0
+color = Color( 0.12549, 0.180392, 0.215686, 1 )
+
+[node name="StaticBody2D19" type="StaticBody2D" parent="Geometry" index="25"]
+position = Vector2( 383, -946 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Geometry/StaticBody2D19" index="0"]
+shape = SubResource( 11 )
+one_way_collision = true
+
+[node name="ColorRect" type="ColorRect" parent="Geometry/StaticBody2D19" index="1"]
+margin_left = -50.0
+margin_top = -5.0
+margin_right = 50.0
+margin_bottom = 5.0
+color = Color( 0.12549, 0.180392, 0.215686, 1 )
+
+[node name="Checkpoint" parent="Checkpoints" index="0" instance=ExtResource( 1 )]
+position = Vector2( 382, -1200 )
+is_final = true
+
+[node name="Player" parent="." index="4"]
+position = Vector2( -13, 404 )
+
+[node name="NextLevel" parent="." index="5"]
+position = Vector2( 388, -1329 )
+
+[node name="CollisionShape2D" parent="NextLevel" index="0"]
+position = Vector2( -4.5, 0 )
+shape = SubResource( 12 )
+
+[node name="Death" parent="." index="6"]
+position = Vector2( 0, 763 )
+
+[node name="Timer" parent="." index="8"]
+wait_time = 30.0
+one_shot = true
+
+[node name="TextureRect" type="TextureRect" parent="." index="9"]
+margin_left = -799.0
+margin_top = 130.0
+margin_right = 1881.0
+margin_bottom = 860.0
+mouse_filter = 2
+texture = SubResource( 14 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="TextureRect" index="0"]
+margin_left = 135.0
+margin_top = 554.0
+margin_right = 2528.0
+margin_bottom = 1389.0
+color = Color( 0, 0, 0, 1 )

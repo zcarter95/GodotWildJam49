@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/autoloads/keybinds.gd" type="Script" id=1]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.270588, 0.231373, 0.160784, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Keybinds" type="CanvasLayer"]
 pause_mode = 2
@@ -17,6 +25,8 @@ margin_top = -90.0
 margin_right = 160.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 320, 180 )
+theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -43,14 +53,14 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel/ScrollContainer/VBoxContainer"]
-margin_top = 28.0
+margin_top = 30.0
 margin_right = 312.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 
 [node name="Label" type="Label" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_top = 3.0
 margin_right = 154.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Move Left"
 align = 1
@@ -58,19 +68,20 @@ align = 1
 [node name="MoveLeft" type="Button" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 158.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "A"
+flat = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PopupPanel/ScrollContainer/VBoxContainer"]
-margin_top = 52.0
+margin_top = 53.0
 margin_right = 312.0
 margin_bottom = 72.0
 
 [node name="Label" type="Label" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer2"]
 margin_top = 3.0
 margin_right = 154.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Move Right"
 align = 1
@@ -78,19 +89,20 @@ align = 1
 [node name="MoveRight" type="Button" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 158.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "D"
+flat = true
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PopupPanel/ScrollContainer/VBoxContainer"]
 margin_top = 76.0
 margin_right = 312.0
-margin_bottom = 96.0
+margin_bottom = 95.0
 
 [node name="Label" type="Label" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
 margin_right = 154.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Move Up"
 align = 1
@@ -98,19 +110,20 @@ align = 1
 [node name="MoveUp" type="Button" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 158.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "W"
+flat = true
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="PopupPanel/ScrollContainer/VBoxContainer"]
-margin_top = 100.0
+margin_top = 99.0
 margin_right = 312.0
-margin_bottom = 120.0
+margin_bottom = 118.0
 
 [node name="Label" type="Label" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer5"]
 margin_top = 3.0
 margin_right = 154.0
-margin_bottom = 17.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 text = "Dash"
 align = 1
@@ -118,15 +131,17 @@ align = 1
 [node name="Dash" type="Button" parent="PopupPanel/ScrollContainer/VBoxContainer/HBoxContainer5"]
 margin_left = 158.0
 margin_right = 312.0
-margin_bottom = 20.0
+margin_bottom = 19.0
 size_flags_horizontal = 3
 text = "Shift "
+flat = true
 
 [node name="Reset" type="Button" parent="PopupPanel/ScrollContainer/VBoxContainer"]
-margin_top = 124.0
+margin_top = 122.0
 margin_right = 312.0
-margin_bottom = 144.0
+margin_bottom = 141.0
 text = "Reset"
+flat = true
 
 [connection signal="popup_hide" from="PopupPanel" to="." method="_on_PopupPanel_popup_hide"]
 [connection signal="pressed" from="PopupPanel/ScrollContainer/VBoxContainer/Reset" to="." method="_on_Reset_pressed"]

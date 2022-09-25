@@ -79,9 +79,9 @@ func _physics_process(delta: float) -> void:
 		State.DASH:
 			sprite.play("Dash")
 			if dash_left:
-				move_and_slide(Vector2.LEFT * dash_speed, Vector2.UP)
+				velocity = move_and_slide(Vector2.LEFT * dash_speed, Vector2.UP)
 			else:
-				move_and_slide(Vector2.RIGHT * dash_speed, Vector2.UP)
+				velocity = move_and_slide(Vector2.RIGHT * dash_speed, Vector2.UP)
 
 
 func _unhandled_input(event: InputEvent) -> void:

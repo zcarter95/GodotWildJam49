@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/title/title.gd" type="Script" id=1]
 [ext_resource path="res://scenes/title/Main_Menu_Theme.mp3" type="AudioStream" id=2]
 [ext_resource path="res://fonts/m5x7.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://resources/main_theme.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/levels/rock_wall.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -23,6 +24,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 background_music = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 2
 
 [node name="VBox" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -74,6 +82,7 @@ margin_right = 339.0
 margin_bottom = 224.0
 size_flags_horizontal = 4
 text = "Start"
+flat = true
 
 [node name="Credits" type="Button" parent="VBox/Main"]
 margin_left = 295.0
@@ -82,6 +91,7 @@ margin_right = 344.0
 margin_bottom = 247.0
 size_flags_horizontal = 4
 text = "Credits"
+flat = true
 
 [node name="Settings" type="Button" parent="VBox/Main"]
 margin_left = 292.0
@@ -90,6 +100,7 @@ margin_right = 347.0
 margin_bottom = 270.0
 size_flags_horizontal = 4
 text = "Settings"
+flat = true
 
 [node name="Credits" type="VBoxContainer" parent="VBox"]
 margin_top = 364.0
@@ -104,6 +115,7 @@ margin_right = 337.0
 margin_bottom = 19.0
 size_flags_horizontal = 4
 text = "Back"
+flat = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBox/Credits"]
 margin_top = 149.0

@@ -9,7 +9,7 @@ const TWEEN_TIME := 0.5
 
 
 func _on_Start_pressed() -> void:
-	emit_signal("change_scene", "res://scenes/levels/tutorial/tutorial.tscn")
+	emit_signal("change_scene", "res://scenes/levels/tutorial.tscn")
 
 
 func _on_Credits_pressed() -> void:

@@ -8,10 +8,15 @@ export var is_final := false
 export var is_active := false
 
 
-func _on_animation_finished():
-	$Display.animation = "Idle"
+func _ready() -> void:
 	if is_final:
 		$AudioStreamPlayer2D.stream = load("res://scenes/checkpoint/FinalCheckpoint.wav")
+		$Display.frames = load("res://scenes/checkpoint/checklast_frames.tres")
+	$Display.play("Idle")
+
+
+func _on_animation_finished():
+	$Display.animation = "Idle"
 
 
 func _on_body_entered(body):

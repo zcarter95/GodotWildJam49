@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/levels/level.gd" type="Script" id=1]
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/main_theme.tres" type="Theme" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5000, 10 )
@@ -9,7 +10,6 @@ extents = Vector2( 5000, 10 )
 [node name="Level" type="Node2D"]
 pause_mode = 1
 script = ExtResource( 1 )
-next_scene = "res://scenes/levels/test_level.tscn"
 
 [node name="Geometry" type="Node2D" parent="."]
 
@@ -31,6 +31,7 @@ shape = SubResource( 1 )
 [node name="Control" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -48,6 +49,7 @@ clip_text = true
 margin_right = 12.0
 margin_bottom = 20.0
 text = "Settings"
+flat = true
 
 [node name="Timer" type="Timer" parent="."]
 
