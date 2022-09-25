@@ -81,6 +81,9 @@ shape = SubResource( 2 )
 
 [node name="GrassPlatform8" parent="Geometry" index="5" instance=ExtResource( 6 )]
 position = Vector2( 1792, -385 )
+move_dist = 200.0
+move_dir = Vector2( 1, 0 )
+move_speed = 100.0
 
 [node name="CollisionShape2D" parent="Geometry/GrassPlatform8" index="3"]
 shape = SubResource( 2 )
@@ -107,6 +110,9 @@ shape = SubResource( 3 )
 [node name="GrassPlatform5" parent="Geometry" index="8" instance=ExtResource( 6 )]
 position = Vector2( 1023, -265 )
 rotation = -1.5708
+move_dist = 100.0
+move_dir = Vector2( 0, 1 )
+move_speed = 100.0
 
 [node name="CollisionShape2D" parent="Geometry/GrassPlatform5" index="3"]
 shape = SubResource( 3 )
@@ -164,6 +170,9 @@ position = Vector2( -36, -7 )
 
 [node name="GrassPlatform12" parent="Geometry" index="15" instance=ExtResource( 6 )]
 position = Vector2( 1864, -874 )
+move_dist = 100.0
+move_dir = Vector2( 1, 1 )
+move_speed = 100.0
 
 [node name="CollisionShape2D" parent="Geometry/GrassPlatform12" index="3"]
 shape = SubResource( 2 )

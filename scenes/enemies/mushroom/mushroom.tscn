@@ -1,10 +1,12 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/enemies/mushroom/mushroom_attack.png" type="Texture" id=1]
 [ext_resource path="res://scenes/enemies/mushroom/mushroom_alert.png" type="Texture" id=2]
 [ext_resource path="res://scenes/enemies/mushroom/mushroom_rise.png" type="Texture" id=3]
 [ext_resource path="res://scenes/enemies/mushroom/mushroom_idle.png" type="Texture" id=4]
 [ext_resource path="res://scenes/enemies/mushroom/mushroom.gd" type="Script" id=5]
+[ext_resource path="res://scenes/enemies/EnemyDeath.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/enemies/EnemyAttack.wav" type="AudioStream" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -118,10 +120,10 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 100, 10 )
+extents = Vector2( 100, 125 )
 
 [sub_resource type="CircleShape2D" id=25]
-radius = 5.0
+radius = 2.0
 
 [sub_resource type="CapsuleShape2D" id=26]
 radius = 20.0
@@ -143,7 +145,7 @@ playing = true
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( 0, -11 )
+position = Vector2( 0, -126 )
 shape = SubResource( 24 )
 
 [node name="Timer" type="Timer" parent="."]
@@ -151,7 +153,7 @@ shape = SubResource( 24 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, -13 )
+position = Vector2( 0, -3 )
 shape = SubResource( 25 )
 
 [node name="AttackLeft" type="Area2D" parent="."]
@@ -178,6 +180,12 @@ monitorable = false
 position = Vector2( 0, -29 )
 shape = SubResource( 27 )
 
+[node name="Attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_body_exited"]
@@ -186,3 +194,4 @@ shape = SubResource( 27 )
 [connection signal="body_entered" from="AttackLeft" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="AttackRight" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_entered" from="Die" to="." method="_on_Die_body_entered"]
+[connection signal="finished" from="Death" to="." method="_on_Death_finished"]

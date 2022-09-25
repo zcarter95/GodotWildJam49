@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 
+signal click
+
 const PATH := "user://keybinds.ini"
 
 var config: ConfigFile
@@ -59,6 +61,7 @@ func show_keybinds() -> void:
 	
 
 func on_button_pressed(b: Button, action: String) -> void:
+	emit_signal("click")
 	if waiting_for_input:
 		current_button.text = previous_event
 	previous_event = b.text
@@ -76,5 +79,6 @@ func _on_PopupPanel_popup_hide() -> void:
 
 
 func _on_Reset_pressed() -> void:
+	emit_signal("click")
 	for action in defaults:
 		remap(get(action), action, defaults[action])

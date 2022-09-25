@@ -12,6 +12,8 @@ var reset_checkpoint: bool
 
 func _ready() -> void:
 	Settings.connect("change_scene", self, "change_scene")
+	Settings.connect("click", $Click, "play")
+	Keybinds.connect("click", $Click, "play")
 	change_scene("res://scenes/title/title.tscn", false)
 
 
@@ -58,6 +60,8 @@ func change_scene_deferred() -> void:
 	add_child(cur_scene)
 	if cur_scene.has_signal("change_scene"):
 		cur_scene.connect("change_scene", self, "change_scene")
+	if cur_scene.has_signal("click"):
+		cur_scene.connect("click", $Click, "play")
 	if cur_scene is Level:
 		cur_scene.connect("checkpoint_reached", self, "checkpoint_reached")
 		cur_scene.connect("respawn", self, "respawn")

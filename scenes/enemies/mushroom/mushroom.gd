@@ -26,6 +26,7 @@ func _on_PlayerDetector_body_exited(body: Node) -> void:
 
 
 func _on_Timer_timeout() -> void:
+	$Attack.play()
 	sprite.play("Attack")
 	yield(get_tree().create_timer(0.5), "timeout")
 	if sprite.flip_h:
@@ -57,6 +58,12 @@ func _on_AnimatedSprite_animation_finished() -> void:
 
 
 func _on_Die_body_entered(body: Node) -> void:
-	if body.name == "Player" and body.position.y < $Die/CollisionShape2D.position.y:
+	if body.name == "Player" and body.global_position.y < $Die/CollisionShape2D.global_position.y:
 		state = State.DIE
-		queue_free()
+		$Timer.stop()
+		hide()
+		$Death.play()
+
+
+func _on_Death_finished() -> void:
+	queue_free()

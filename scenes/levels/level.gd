@@ -5,6 +5,7 @@ class_name Level
 signal checkpoint_reached(id)
 signal respawn()
 signal change_scene(to)
+signal click
 
 export var start_with_timer := true
 export(String, FILE, "*.tscn") var next_scene: String
@@ -67,8 +68,5 @@ func _on_Death_body_entered(body: Node) -> void:
 
 
 func _on_Settings_pressed() -> void:
+	emit_signal("click")
 	Settings.show_settings()
-
-
-func _on_Player_damage(health) -> void:
-	$CanvasLayer/ProgressBar.value = health

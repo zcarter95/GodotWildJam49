@@ -2,6 +2,7 @@ extends CanvasLayer
 
 
 signal change_scene
+signal click
 
 const PATH := "user://settings.ini"
 
@@ -49,9 +50,11 @@ func _on_Music_value_changed(value: float) -> void:
 
 
 func _on_Quit_pressed() -> void:
+	emit_signal("click")
 	$PopupPanel.hide()
 	emit_signal("change_scene", "res://scenes/title/title.tscn")
 
 
 func _on_Keybinds_pressed() -> void:
+	emit_signal("click")
 	Keybinds.show_keybinds()

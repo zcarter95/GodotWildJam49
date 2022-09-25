@@ -105,7 +105,10 @@ position = Vector2( 261, -60 )
 shape = SubResource( 4 )
 
 [node name="GrassPlatform4" parent="Geometry" index="7" instance=ExtResource( 2 )]
-position = Vector2( 617, -178 )
+position = Vector2( 541, -178 )
+move_dist = 200.0
+move_dir = Vector2( 1, 0 )
+move_speed = 100.0
 
 [node name="CollisionShape2D" parent="Geometry/GrassPlatform4" index="3"]
 shape = SubResource( 4 )

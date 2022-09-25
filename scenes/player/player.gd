@@ -117,6 +117,13 @@ func die() -> void:
 
 func take_damage() -> void:
 	health -= 1
+	$Health.value = health
+	$Health.show()
+	$Health/Timer.start()
 	emit_signal("damage", health)
 	if health == 0:
 		die()
+
+
+func _on_Timer_timeout() -> void:
+	$Health.hide()
